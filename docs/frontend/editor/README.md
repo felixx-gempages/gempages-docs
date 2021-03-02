@@ -1,0 +1,3 @@
+- # Editor
+  - [Ý tưởng testing code](/frontend/editor/testing-code.md)
+  - [Global config](/frontend/editor/global-config.md)
