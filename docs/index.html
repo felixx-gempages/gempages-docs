@@ -28,14 +28,33 @@
         <a href="#/">Home</a>
       </li>
       <li>
+        <a href="#/generals/">Generals</a>
+        <ul>
+          <li>
+            <a href="#/generals/procedure">Quy trình team</a>
+          </li>
+          <li>
+            <a href="#/generals/git-convention">Quy chuẩn sử dụng Git</a>
+          </li>
+          <li>
+            <a href="#/generals/changelog">Changelogs</a>
+          </li>
+        </ul>
+      </li>
+      <li>
         <a href="#/frontend/">FrontEnd</a>
         <ul>
+          <li>
+            <a href="#/frontend/configs/">Cấu hình chung</a>
+          </li>
+          <hr />
           <li>
             <a href="#/frontend/dashboard/">Dashboard</a>
           </li>
           <li>
             <a href="#/frontend/editor/">Editor</a>
           </li>
+          
         </ul>
       </li>
       <li>
@@ -56,6 +75,7 @@
         errorText  : 'Error',
         successText: 'Copied'
       },
+      noEmoji: true,
       plugins: [
         EditOnGithubPlugin.create(
           "https://github.com/noragem/gempages-docs/blob/main/docs/",
