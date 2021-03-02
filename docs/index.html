@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="https://d3dfaj4bukarbm.cloudfront.net/production/images/admin/400d1e4c-8ee3-4d10-a6de-bf10d5c9e6f0.x-icon" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    /* Custom style */
+    .app-nav {
+      position: fixed;
+    }
+    .sidebar ul, .sidebar ul li {
+      list-style: decimal;
+    }
+    .sidebar li {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="#/">Home</a>
+      </li>
+      <li>
+        <a href="#/ecomsolid/">EcomSolid</a>
+        <ul>
+          <li>
+            <a href="#/ecomsolid/atoms">Atoms</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/sections">Sections</a>
+          </li>
+          <hr>
+          <li>
+            <a href="#/ecomsolid/html">HTML</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/snippets">Snippets</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/style">Style</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/script">Script</a>
+          </li>
+          <hr>
+          <li>
+            <a href="#/ecomsolid/library">Library</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/class-global">Class Global</a>
+          </li>
+          <li>
+            <a href="#/ecomsolid/global-variables">Global Variables</a>
+          </li>
+          <hr>
+          <li>
+            <a href="#/ecomsolid/tech-support">Tech Support</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#/gempages/">GemPages</a>
+      </li>
+    </ul>
+  </nav>
+  <div id="app">Please wait...</div>
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
+  <script>
+    window.$docsify = {
+      // loadSidebar: true,
+      // loadNavbar: true,
+      name: 'Document',
+      repo: 'https://github.com/ecomsolid/docs.git',
+      copyCode: {
+        buttonText : 'Copy to clipboard',
+        errorText  : 'Error',
+        successText: 'Copied'
+      },
+      plugins: [
+        EditOnGithubPlugin.create(
+          "https://github.com/ecomsolid/docs/blob/master/docs/",
+          null,
+          "Edit on Github"
+        ),
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            if (window.location.hostname == "localhost") {
+              return content;
+            }
+            return content.replace(new RegExp("/images/", 'ig'), "/docs/images/");
+          })
+        },
+        function (hook, vm) {
+          hook.ready(function () {
+              // true = show debug log
+              let dd = false 
+              let TARGET_QUERY = 'id'
+              let SCROLL_DELAY = 500 // in milisecond
+              let location = window.location
+
+              dd&&console.log('custom scroll plugin called!')
+              let currentUrlWithoutHash = new URL(
+                  location.origin+location.pathname+
+                  location.search+location.hash.substring(1)
+              )
+              let urlQueryParam = currentUrlWithoutHash.searchParams
+              let isUrlHasIdQuery = urlQueryParam.has(TARGET_QUERY)
+              if(isUrlHasIdQuery){
+                  dd&&console.log('url has id, will scroll to element')
+                  let urlId = urlQueryParam.get(TARGET_QUERY)
+                  // run delayed, to make sure everything loaded
+                  setTimeout(function() {
+                      dd&&console.log('will scroll now!')
+                      try{
+                          document.querySelector('#'+urlId)
+                              .scrollIntoView()
+                      } catch(e){ dd&&console.log('custom scroll failed',e) }
+                  }, SCROLL_DELAY);
+              }
+          })
+      },
+      ],
+      'flexible-alerts': {
+        style: 'flat'
+      },
+      tabs: {
+        sync: false // default
+      },
+      // search: 'auto',
+      // auto2top: true,
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scss.min.js"></script>
+  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+</body>
+</html>
